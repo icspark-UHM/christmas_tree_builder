@@ -1,53 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>My Website!</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>My Website!</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-    <div class="container">
-        <h1>🎄 Christmas Tree Builder 🎄</h1>
-        <p class="subtitle">Drag shapes, learn CSS, and create your magical tree!</p>
-        
-        <div class="workspace">
-            <div class="shape-palette">
-                <div class="palette-title">🎨 Shape Palette</div>
-                <div class="shapes-grid">
-                    <div class="shape-btn" data-shape="triangle">🔺 Triangle</div>
-                    <div class="shape-btn" data-shape="circle">⚫ Circle</div>
-                    <div class="shape-btn" data-shape="star">⭐ Star</div>
-                    <div class="shape-btn" data-shape="rectangle">▬ Rectangle</div>
-                    <div class="shape-btn" data-shape="square">◼️ Square</div>
-                    <div class="shape-btn" data-shape="snowflake">❄️ Snowflake</div>
-                </div>
-                
-                <div class="controls">
-                    <button class="btn clear-btn" onclick="clearCanvas()">🗑️ Clear All</button>
-                    <button class="btn save-btn" onclick="saveTree()">💾 Save Tree</button>
-                </div>
+  <div class="container">
+    <h1>🎄 Christmas Tree Builder 🎄</h1>
+    <p class="subtitle">Drag shapes, learn CSS, and create your magical tree!</p>
 
-                <div class="instructions">
-                    <h3>📝 Instructions:</h3>
-                    <ul>
-                        <li>Click shapes to add them</li>
-                        <li>Click a shape to select it</li>
-                        <li>Adjust size & color in CSS panel</li>
-                        <li>Drag to position shapes</li>
-                        <li>Build your tree & learn CSS!</li>
-                    </ul>
-                </div>
-            </div>
+    <div class="workspace">
+      <div class="shape-palette">
+        <div class="palette-title">🎨 Shape Palette</div>
 
-            <div class="canvas" id="canvas"></div>
-
-            <div class="css-inspector" id="inspector">
-                <div class="inspector-title">💻 CSS Inspector</div>
-                <div class="no-selection">
-                    👆 Click on a shape to see its CSS code and adjust its properties!
-                </div>
-            </div>
+        <div class="shapes-grid">
+          <div class="shape-btn" data-shape="triangle">🔺 Triangle</div>
+          <div class="shape-btn" data-shape="circle">⚫ Circle</div>
+          <div class="shape-btn" data-shape="star">⭐ Star</div>
+          <div class="shape-btn" data-shape="rectangle">▬ Rectangle</div>
+          <div class="shape-btn" data-shape="square">◼️ Square</div>
+          <div class="shape-btn" data-shape="snowflake">❄️ Snowflake</div>
         </div>
+
+        <div class="controls">
+          <button class="btn clear-btn" onclick="clearCanvas()">🗑️ Clear All</button>
+          <button class="btn save-btn" onclick="saveTree()">💾 Save Tree</button>
+        </div>
+
+        <div class="instructions">
+          <h3>📝 Instructions:</h3>
+          <ul>
+            <li>Click shapes to add them</li>
+            <li>Click a shape to select it</li>
+            <li>Adjust size & color in CSS panel</li>
+            <li>Drag to position shapes</li>
+            <li>Build your tree & learn CSS!</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="canvas" id="canvas"></div>
+
+      <div class="css-inspector" id="inspector">
+        <div class="inspector-title">💻 CSS Inspector</div>
+        <div class="no-selection">
+          👆 Click on a shape to see its CSS code and adjust its properties!
+        </div>
+      </div>
     </div>
-    <script src="script.js"></script>
+  </div>
+
+  <script src="script.js"></script>
 </body>
+</html>
