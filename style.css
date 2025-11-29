@@ -69,12 +69,25 @@
             background: white;
             cursor: grab;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
+            gap: 5px;
             transition: all 0.3s;
-            font-size: 0.9em;
+            font-size: 0.85em;
             font-weight: bold;
             color: #333;
+            padding: 8px;
+        }
+        
+        .shape-btn .emoji {
+            font-size: 2em;
+            line-height: 1;
+        }
+        
+        .shape-btn .label {
+            font-size: 0.9em;
+            line-height: 1;
         }
 
         .shape-btn:hover {
@@ -175,24 +188,11 @@
         }
 
         .star {
-            width: 0;
-            height: 0;
-            border-left: 30px solid transparent;
-            border-right: 30px solid transparent;
-            border-bottom: 50px solid #ffd700;
-            position: relative;
-        }
-
-        .star:before {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 0;
-            border-left: 30px solid transparent;
-            border-right: 30px solid transparent;
-            border-top: 50px solid #ffd700;
-            top: 15px;
-            left: -30px;
+            width: 80px;
+            height: 80px;
+            aspect-ratio: 1;
+            background: #ffd700;
+            clip-path: polygon(50% 0, 79% 90%, 2% 35%, 98% 35%, 21% 90%);
         }
 
         .rectangle {
@@ -411,4 +411,33 @@
             border: none;
             border-radius: 6px;
             cursor: pointer;
+        }
+
+        .layering-controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .layer-btn {
+            padding: 10px;
+            background: #1976d2;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.9em;
+            transition: all 0.2s;
+        }
+
+        .layer-btn:hover {
+            background: #1565c0;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .layer-btn:active {
+            transform: translateY(0);
         }

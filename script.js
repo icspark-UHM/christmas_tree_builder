@@ -35,21 +35,15 @@ const canvas = document.getElementById('canvas');
             },
             star: {
                 name: 'Star',
-                explanation: 'Complex shape made by overlapping two triangles using ::before pseudo-element!',
+                explanation: 'A perfect 5-point star created with clip-path! This CSS property cuts the shape of a square into a star using polygon coordinates.',
                 code: `.star {
-  width: 0;
-  height: 0;
-  border-left: 30px solid transparent;
-  border-right: 30px solid transparent;
-  border-bottom: 50px solid #ffd700;
-}
-
-.star:before {
-  /* Second triangle on top */
-  border-top: 50px solid #ffd700;
-  /* Golden color */
+  width: 80px;
+  height: 80px;
+  aspect-ratio: 1;
+  background: #ffd700;
+  clip-path: polygon(50% 0, 79% 90%, 2% 35%, 98% 35%, 21% 90%);
 }`,
-                adjustable: ['border-bottom-width', 'border-left-width', 'border-bottom-color']
+                adjustable: ['width', 'background']
             },
             rectangle: {
                 name: 'Rectangle',
@@ -128,6 +122,7 @@ const canvas = document.getElementById('canvas');
             
             shape.style.left = (x - 50) + 'px';
             shape.style.top = (y - 50) + 'px';
+            shape.style.zIndex = 1;
             
             canvas.appendChild(shape);
             makeDraggable(shape);
@@ -194,6 +189,10 @@ const canvas = document.getElementById('canvas');
                                    oninput="updateShapeColor('${shape.id}', this.value)">
                         </div>
                         ` : ''}
+                        <div class="layering-controls">
+                            <button class="layer-btn" onclick="sendForward('${shape.id}')">⬆️ Send Forward</button>
+                            <button class="layer-btn" onclick="sendBackward('${shape.id}')">⬇️ Send Backward</button>
+                        </div>
                         <button class="delete-btn" onclick="deleteShape('${shape.id}')">🗑️ Delete Shape</button>
                     </div>
                 </div>
@@ -204,7 +203,7 @@ const canvas = document.getElementById('canvas');
             const baseSize = {
                 triangle: { borderLeft: 50, borderRight: 50, borderBottom: 80 },
                 circle: { size: 60 },
-                star: { borderLeft: 30, borderRight: 30, borderBottom: 50 },
+                star: { size: 80 },
                 rectangle: { width: 60, height: 80 },
                 square: { size: 60 },
                 snowflake: { fontSize: 40 }
@@ -232,14 +231,11 @@ const canvas = document.getElementById('canvas');
 }`;
                 case 'star':
                     return `.star {
-  border-left: ${scaled(baseSize.star.borderLeft)}px solid transparent;
-  border-right: ${scaled(baseSize.star.borderRight)}px solid transparent;
-  border-bottom: ${scaled(baseSize.star.borderBottom)}px solid ${color};
-  transform: scale(${scale});
-}
-
-.star:before {
-  border-top: ${scaled(baseSize.star.borderBottom)}px solid ${color};
+  width: ${scaled(baseSize.star.size)}px;
+  height: ${scaled(baseSize.star.size)}px;
+  aspect-ratio: 1;
+  background: ${color};
+  clip-path: polygon(50% 0, 79% 90%, 2% 35%, 98% 35%, 21% 90%);
 }`;
                 case 'rectangle':
                     return `.rectangle {
@@ -431,3 +427,22 @@ const canvas = document.getElementById('canvas');
         function saveTree() {
             alert('Great job! 🎄\n\nYour Christmas tree looks amazing!\n\nYou learned:\n✓ How CSS creates shapes\n✓ How to adjust size and colors\n✓ How CSS properties work together\n\nKeep practicing CSS!');
         }
+
+        window.sendForward = function(id) {
+            const shape = document.getElementById(id);
+            if (!shape) return;
+            
+            const currentZ = parseInt(shape.style.zIndex) || 1;
+            shape.style.zIndex = currentZ + 1;
+        };
+
+        window.sendBackward = function(id) {
+            const shape = document.getElementById(id);
+            if (!shape) return;
+            
+            const currentZ = parseInt(shape.style.zIndex) || 1;
+            // Prevent going below z-index of 1 so shapes stay above the canvas
+            if (currentZ > 1) {
+                shape.style.zIndex = currentZ - 1;
+            }
+        };
